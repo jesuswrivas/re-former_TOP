@@ -1,0 +1,49 @@
+<h1>New User </h1>
+<!-- 
+<form action="/users"  
+method= "post" 
+accept-charset="UTF-8" 
+value="<%= form_authenticity_token %>">
+
+
+    <label for="user_name">Username</label>
+    <input type="text" name="user[user_name]">
+
+    <label for="email">Email</label>
+    <input type="email" name="user[email]">
+
+    <label for="password_digest">Password</label>
+    <input type="password" name="user[password_digest]">
+
+    <input type="submit" value= "Submit">
+
+</form>
+
+ -->
+
+ <% if @user.errors.any?%>
+ 
+     <h2><%= pluralize(@user.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+    <ul>
+        <% @user.errors.full_messages.each do |message|%>
+            <li><%= message %></li>
+        <% end %>
+        
+    </ul>
+ <% end %>
+
+
+  <%= form_with model: @user do |form| %>
+
+    <%= form.label :user_name, "Username" %>
+    <%= form.text_field :user_name %>
+
+    <%= form.label :email, "Email:" %>
+    <%= form.email_field :email %>
+
+    <%= form.label :password_digest, "Password:" %>
+    <%= form.password_field :password_digest %>
+
+    <%= form.submit%>
+<% end %>
